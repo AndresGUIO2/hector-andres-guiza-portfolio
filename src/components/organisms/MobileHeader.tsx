@@ -11,7 +11,15 @@ import InfoList from "@/components/molecules/InfoList";
 import ProgressList from "@/components/molecules/ProgressList";
 import ExtraSkillsList from "@/components/molecules/ExtraSkillsList";
 
+/**
+ * Renders the mobile header — an atomic-design organism that composes
+ * ProfileCard, InfoList, ProgressList, ExtraSkillsList molecules and
+ * SocialIconLink, ThemeToggle, Divider atoms into a sticky top bar with
+ * a hamburger-triggered slide-out drawer. Replaces both sidebars on
+ * small/medium screens.
+ */
 export default function MobileHeader() {
+  /** Tracks whether the slide-out navigation drawer is open */
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -42,15 +50,15 @@ export default function MobileHeader() {
         </div>
       </header>
 
-      {/* Sidebar overlay */}
+      {/* Sidebar overlay — rendered conditionally when the drawer is open */}
       {menuOpen && (
         <div className="fixed inset-0 z-40 lg:hidden">
-          {/* Backdrop */}
+          {/* Semi-transparent backdrop; clicking it closes the drawer */}
           <div
             className="absolute inset-0 bg-black/40"
             onClick={() => setMenuOpen(false)}
           />
-          {/* Slide-out panel */}
+          {/* Slide-out panel containing the same content as LeftSidebar */}
           <div className="absolute left-0 top-0 w-[280px] h-full bg-white overflow-y-auto shadow-lg">
             <ProfileCard size="mobile" />
             <Divider />

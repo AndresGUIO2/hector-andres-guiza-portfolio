@@ -1,5 +1,10 @@
 import { FaCopyright } from "react-icons/fa";
 
+/**
+ * Renders the footer — an atomic-design organism that composes the
+ * FaCopyright icon atom into a centered copyright bar displayed at
+ * the bottom of the page.
+ */
 export default function Footer() {
   return (
     <div className="bg-white rounded-lg flex items-center justify-center py-4">

@@ -1,9 +1,14 @@
 import { FaArrowRight } from "react-icons/fa";
 
+/**
+ * Renders the hero section — an atomic-design organism that composes
+ * inline atoms (heading, paragraph, CTA link with FaArrowRight icon)
+ * into a prominent banner introducing the developer with a call-to-action.
+ */
 export default function HeroSection() {
   return (
     <div className="hero-gradient rounded-lg overflow-hidden flex flex-col md:flex-row md:min-h-[467px]">
-      {/* Left content */}
+      {/* Left content: name, title, bio, and hire-me CTA */}
       <div className="flex-1 flex flex-col justify-center p-6 md:px-[60px] md:py-[50px]">
         <h1 className="text-[32px] md:text-[48px] font-bold leading-tight text-white">
           I&apos;m Héctor Güiza

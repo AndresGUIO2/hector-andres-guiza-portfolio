@@ -5,14 +5,23 @@ import { IconType } from "react-icons";
 import SectionHeading from "@/components/atoms/SectionHeading";
 import FlipCard from "@/components/molecules/FlipCard";
 
+/**
+ * Shape for each knowledge area displayed as a flip card.
+ */
 interface KnowledgeItem {
+  /** Name of the knowledge area (e.g. "Full Stack Development") */
   title: string;
+  /** Short subtitle displayed on the card front */
   description: string;
+  /** Icon component rendered on the card front */
   icon: IconType;
+  /** Detailed paragraph shown on the flipped side */
   highlight: string;
+  /** Technology tags displayed on the flipped side */
   tags: string[];
 }
 
+/** Static data array describing the developer's knowledge areas and highlights */
 const knowledgeItems: KnowledgeItem[] = [
   {
     title: "Full Stack Development",
@@ -58,6 +67,11 @@ const knowledgeItems: KnowledgeItem[] = [
   },
 ];
 
+/**
+ * Renders the knowledge section — an atomic-design organism that composes
+ * SectionHeading atom and FlipCard molecules into a responsive grid
+ * showcasing the developer's technical expertise areas.
+ */
 export default function KnowledgeSection() {
   return (
     <div className="flex flex-col items-center gap-[33px]">

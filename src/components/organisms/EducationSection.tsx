@@ -1,13 +1,21 @@
 import SectionHeading from "@/components/atoms/SectionHeading";
 import EducationEntry from "@/components/molecules/EducationEntry";
 
+/**
+ * Shape for each education/experience entry rendered by EducationEntry.
+ */
 interface EducationEntryData {
+  /** School, company, or project name */
   institution: string;
+  /** Role or position held */
   role: string;
+  /** Date range string (e.g. "2021 - Present") */
   period: string;
+  /** Detailed description of the experience or achievement */
   description: string;
 }
 
+/** Static data array listing the developer's academic and professional background */
 const educationEntries: EducationEntryData[] = [
   {
     institution: "Universidad de Antioquia",
@@ -32,6 +40,11 @@ const educationEntries: EducationEntryData[] = [
   },
 ];
 
+/**
+ * Renders the education section — an atomic-design organism that composes
+ * SectionHeading atom and EducationEntry molecules into a card listing
+ * academic background and professional experience entries.
+ */
 export default function EducationSection() {
   return (
     <div className="flex flex-col items-center gap-[33px]">
@@ -47,6 +60,7 @@ export default function EducationSection() {
             role={entry.role}
             period={entry.period}
             description={entry.description}
+            // Show a visual divider between entries, but not after the last one
             showDivider={index < educationEntries.length - 1}
           />
         ))}

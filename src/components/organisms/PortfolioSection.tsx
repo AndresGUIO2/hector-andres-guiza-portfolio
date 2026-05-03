@@ -6,6 +6,7 @@ import { FaArrowRight, FaChevronUp, FaTimes } from "react-icons/fa";
 import SectionHeading from "@/components/atoms/SectionHeading";
 import TagBadge from "@/components/atoms/TagBadge";
 
+/** Paths to the HistorIA project screenshot images for the gallery */
 const screenshots = [
   "/images/historia/screenshot-1.jpg",
   "/images/historia/screenshot-2.jpg",
@@ -14,8 +15,10 @@ const screenshots = [
   "/images/historia/screenshot-5.jpg",
 ];
 
+/** Technologies used in the HistorIA project, displayed as tag badges */
 const techStack = ["Kotlin", "Android SDK", "Jetpack Compose", "Room DB", "Gemini AI", "Coroutines", "FSM Engine", "DataStore"];
 
+/** Core architectural pillars of the HistorIA project with descriptions */
 const pillars = [
   {
     title: "Hybrid Narrative Engine",
@@ -35,8 +38,16 @@ const pillars = [
   },
 ];
 
+/**
+ * Renders the portfolio section — an atomic-design organism that composes
+ * SectionHeading atom and TagBadge atoms into a featured-project showcase.
+ * Displays a collapsed card that expands into a detailed view with
+ * screenshot gallery, technical pillars, features, and a lightbox zoom.
+ */
 export default function PortfolioSection() {
+  /** Whether the project detail card is expanded or collapsed */
   const [expanded, setExpanded] = useState(false);
+  /** URL of the currently zoomed screenshot, or null when lightbox is closed */
   const [zoomed, setZoomed] = useState<string | null>(null);
 
   return (
@@ -152,7 +163,7 @@ export default function PortfolioSection() {
         </div>
       )}
 
-      {/* Lightbox */}
+      {/* Lightbox overlay — portal-rendered full-screen zoom on screenshot click */}
       {zoomed && createPortal(
         <div
           className="fixed inset-0 z-[9999] bg-black/80 flex items-center justify-center p-4"
@@ -168,6 +179,7 @@ export default function PortfolioSection() {
             src={zoomed}
             alt="Zoomed screenshot"
             className="max-w-full max-h-[90vh] rounded-lg object-contain"
+            // Prevent click on image from closing the lightbox
             onClick={(e) => e.stopPropagation()}
           />
         </div>,

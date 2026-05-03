@@ -1,8 +1,18 @@
+/**
+ * Props for the ProfileCard molecule component.
+ */
 interface ProfileCardProps {
+  /** Controls the card layout variant — "desktop" uses larger spacing and photo, "mobile" is more compact. */
   size: "desktop" | "mobile";
 }
 
+/**
+ * Atomic Design molecule that composes the user's profile photo, name, and title
+ * into a unified card layout. Adapts spacing and sizing based on the `size` prop.
+ * Used inside the sidebar organism of the resume page.
+ */
 export default function ProfileCard({ size }: ProfileCardProps) {
+  // Determine layout variant once to derive all size-dependent classes
   const isDesktop = size === "desktop";
   const photoSize = isDesktop ? "w-[150px] h-[150px]" : "w-[120px] h-[120px]";
   const nameClass = isDesktop ? "text-[18px] mt-8" : "text-[16px] mt-4";
