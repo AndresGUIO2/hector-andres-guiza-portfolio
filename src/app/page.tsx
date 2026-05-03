@@ -1,12 +1,14 @@
-import LeftSidebar from "@/components/LeftSidebar";
-import RightSidebar from "@/components/RightSidebar";
-import MobileHeader from "@/components/MobileHeader";
-import ScrollReveal from "@/components/ScrollReveal";
-import HeroSection from "@/components/HeroSection";
-import KnowledgeSection from "@/components/KnowledgeSection";
-import EducationSection from "@/components/EducationSection";
-import PortfolioSection from "@/components/PortfolioSection";
-import Footer from "@/components/Footer";
+import {
+  LeftSidebar,
+  RightSidebar,
+  MobileHeader,
+  ScrollReveal,
+  HeroSection,
+  KnowledgeSection,
+  EducationSection,
+  PortfolioSection,
+  Footer,
+} from "@/components";
 
 export default function Home() {
   return (

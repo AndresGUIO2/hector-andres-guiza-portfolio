@@ -1,0 +1,9 @@
+export { default as LeftSidebar } from "./organisms/LeftSidebar";
+export { default as RightSidebar } from "./organisms/RightSidebar";
+export { default as MobileHeader } from "./organisms/MobileHeader";
+export { default as HeroSection } from "./organisms/HeroSection";
+export { default as KnowledgeSection } from "./organisms/KnowledgeSection";
+export { default as EducationSection } from "./organisms/EducationSection";
+export { default as PortfolioSection } from "./organisms/PortfolioSection";
+export { default as Footer } from "./organisms/Footer";
+export { default as ScrollReveal } from "./ScrollReveal";
