@@ -36,7 +36,7 @@ export interface PersonalInfo {
 
 /** Personal details shown in the left sidebar and mobile header */
 export const personalInfo: PersonalInfo[] = [
-  { label: "Age", value: "23" },
+  { label: "Age", value: "28" },
   { label: "Residence", value: "Colombia" },
   { label: "Freelance", value: "Available", highlight: true },
   { label: "Address", value: "Medellín, Colombia" },
