@@ -1,8 +1,8 @@
-# Portfolio — Héctor Andrés Güiza Ortegón
+# Portfolio — Héctor Andrés Güiza Ortegón 
 
 Personal portfolio website built as a university project for **Ingeniería Web** (Universidad de Antioquia). The site serves as an interactive CV showcasing education, skills, and featured projects.
 
-**Live site:** [hector-andres-guiza.vercel.app](https://hector-andres-guiza.vercel.app)
+**Live site:** [hector-andres-guiza.vercel.app](https://hector-andres-guiza.vercel.app )
 
 ---
 
