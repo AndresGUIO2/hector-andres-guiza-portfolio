@@ -33,10 +33,10 @@ export default function Home() {
 
         {/* Each section is wrapped in ScrollReveal for fade-in on scroll */}
         <ScrollReveal>
-          <KnowledgeSection />
+          <EducationSection />
         </ScrollReveal>
         <ScrollReveal delay={100}>
-          <EducationSection />
+          <KnowledgeSection />
         </ScrollReveal>
         <ScrollReveal delay={200}>
           <PortfolioSection />

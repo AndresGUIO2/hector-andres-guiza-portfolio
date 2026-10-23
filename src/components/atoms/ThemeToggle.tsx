@@ -1,7 +1,24 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useSyncExternalStore } from "react";
 import { FaSun, FaMoon } from "react-icons/fa";
+
+function subscribe(onChange: () => void) {
+  window.addEventListener("storage", onChange);
+  window.addEventListener("portfolio-theme-change", onChange);
+  return () => {
+    window.removeEventListener("storage", onChange);
+    window.removeEventListener("portfolio-theme-change", onChange);
+  };
+}
+
+function getTheme() {
+  return localStorage.getItem("theme") !== "light";
+}
+
+function getServerTheme() {
+  return true;
+}
 
 /**
  * Props for the ThemeToggle atom component.
@@ -19,25 +36,16 @@ interface ThemeToggleProps {
  * Used in the Navbar organism.
  */
 export default function ThemeToggle({ size = "sm" }: ThemeToggleProps) {
-  // Defaults to dark mode until the saved preference is read
-  const [dark, setDark] = useState(true);
+  const dark = useSyncExternalStore(subscribe, getTheme, getServerTheme);
 
   useEffect(() => {
-    const saved = localStorage.getItem("theme");
-    if (saved === "light") {
-      setDark(false);
-    } else {
-      // Ensure the "dark" class is present when no explicit light preference exists
-      document.documentElement.classList.add("dark");
-    }
-  }, []);
+    document.documentElement.classList.toggle("dark", dark);
+  }, [dark]);
 
   function toggle() {
     const next = !dark;
-    setDark(next);
-    document.documentElement.classList.toggle("dark", next);
-    // Persist the new theme so it survives page reloads
     localStorage.setItem("theme", next ? "dark" : "light");
+    window.dispatchEvent(new Event("portfolio-theme-change"));
   }
 
   const isMd = size === "md";

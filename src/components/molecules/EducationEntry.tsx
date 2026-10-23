@@ -10,6 +10,8 @@ interface EducationEntryProps {
   period: string;
   /** Description of studies, achievements, or relevant coursework. */
   description: string;
+  /** Public achievements, without exposing company implementation details. */
+  achievements?: string[];
   /** When true, renders a horizontal rule below the entry to separate it from the next one. */
   showDivider?: boolean;
 }
@@ -19,26 +21,28 @@ interface EducationEntryProps {
  * and description into a two-column education entry. Used inside the education section
  * organism of the resume page.
  */
-export default function EducationEntry({ institution, role, period, description, showDivider = false }: EducationEntryProps) {
+export default function EducationEntry({ institution, role, period, description, achievements = [], showDivider = false }: EducationEntryProps) {
   return (
     <div>
       {/* Two-column layout: left = institution info, right = description */}
-      <div className="flex flex-col md:flex-row gap-4 md:gap-8">
-        <div className="w-full md:w-[380px] md:shrink-0">
-          <h3 className="text-dark text-[18px] font-medium capitalize">
+      <div className="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] gap-4 md:gap-8">
+        <div>
+          <h3 className="text-dark text-[18px] font-medium">
             {institution}
           </h3>
-          <div className="flex items-center gap-3 mt-3">
-            <span className="text-dark text-[15px] capitalize">{role}</span>
-            {/* Period displayed as a small accent-colored badge */}
-            <span className="bg-accent text-white text-[10px] px-2 py-1 rounded-[1px]">
-              {period}
-            </span>
-          </div>
+          <p className="text-dark text-[15px] leading-6 mt-2">{role}</p>
+          <p className="text-secondary text-[14px] mt-2">{period}</p>
         </div>
         {/* min-w-0 prevents the description from overflowing its flex container */}
         <div className="flex-1 min-w-0">
-          <p className="text-secondary text-[15px] leading-6 capitalize">{description}</p>
+          <p className="text-secondary text-[15px] leading-6">{description}</p>
+          {achievements.length > 0 && (
+            <ul className="list-disc pl-5 mt-3 space-y-3 text-dark text-[15px] leading-6">
+              {achievements.map((achievement) => (
+                <li key={achievement}>{achievement}</li>
+              ))}
+            </ul>
+          )}
         </div>
       </div>
       {/* Conditional divider to visually separate consecutive entries */}

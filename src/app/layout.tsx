@@ -15,9 +15,11 @@ const inter = Inter({
 
 /** Site-wide metadata for SEO and browser tab title */
 export const metadata: Metadata = {
-  title: "Héctor Güiza — Full Stack Developer",
+  metadataBase: new URL("https://hector-andres-guiza.vercel.app"),
+  title: "Héctor Güiza — Fullstack Engineer",
   description:
-    "Portfolio of Héctor Andrés Güiza Ortegón — Full Stack Developer, Data Engineer, and Systems Engineering student.",
+    "Fullstack Engineer in Medellín, Colombia. Python, FastAPI, TypeScript, Next.js, SQL, serverless architecture, and AI-powered web applications.",
+  alternates: { canonical: "/" },
 };
 
 /**

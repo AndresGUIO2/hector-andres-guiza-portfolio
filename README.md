@@ -1,8 +1,10 @@
 # Portfolio — Héctor Andrés Güiza Ortegón 
 
-Personal portfolio website built as a university project for **Ingeniería Web** (Universidad de Antioquia). The site serves as an interactive CV showcasing education, skills, and featured projects.
+Personal portfolio website built with Next.js, originally for **Ingeniería Web** (Universidad de Antioquia). The site presents professional experience at PiTransform and Innovati Software, education, technical skills, and personal projects. Company work is described through public summaries; internal code and assets are private.
 
 **Live site:** [hector-andres-guiza.vercel.app](https://hector-andres-guiza.vercel.app )
+
+The Selected Projects section shows **Syntelle** first beside **HistorIA** in matching expandable cards, stacked on mobile. Syntelle expands into a three-image gallery, keyboard-accessible screenshot viewer, project details, and a direct link to [app.syntelle.online](https://app.syntelle.online). Its public description and technology stack live in `src/data/projects.ts`.
 
 ---
 
@@ -30,22 +32,17 @@ Atoms → Molecules → Organisms
 - **Molecules**: Combinations of atoms that form functional groups (profile cards, skill lists, flip cards)
 - **Organisms**: Complete page sections that compose molecules and atoms (sidebars, hero, education section)
 
-This structure ensures components are **reused in 2+ places** — for example, `ProgressBar` is shared between the desktop `LeftSidebar` and the mobile `MobileHeader`, and `SocialIconLink` is shared between `RightSidebar` and `MobileHeader`.
+Shared molecules keep desktop and mobile content consistent: `SidebarSkills` presents six core technologies with icons, language levels, and expandable categories. `ProfileCard` shows the same compact profile and location in both layouts. The How I Work section describes spec-driven development and AI-assisted development with Claude Code, Codex, and Antigravity.
 
 ### Component Reuse Map
 
 | Component | Type | Used In |
 |---|---|---|
-| `ProgressBar` | Atom | LeftSidebar, MobileHeader |
-| `InfoRow` | Atom | LeftSidebar, MobileHeader |
 | `TagBadge` | Atom | PortfolioSection, KnowledgeSection |
 | `SocialIconLink` | Atom | RightSidebar, MobileHeader |
 | `SectionHeading` | Atom | KnowledgeSection, EducationSection, PortfolioSection |
-| `Divider` | Atom | LeftSidebar, MobileHeader |
 | `ProfileCard` | Molecule | LeftSidebar, MobileHeader |
-| `InfoList` | Molecule | LeftSidebar, MobileHeader |
-| `ProgressList` | Molecule | LeftSidebar, MobileHeader |
-| `ExtraSkillsList` | Molecule | LeftSidebar, MobileHeader |
+| `SidebarSkills` | Molecule | LeftSidebar, MobileHeader |
 
 ---
 
@@ -71,8 +68,7 @@ src/
 │   ├── molecules/
 │   │   ├── ProfileCard.tsx       # Profile photo + name + title
 │   │   ├── InfoList.tsx          # List of InfoRow items
-│   │   ├── ProgressList.tsx      # Heading + list of ProgressBar items
-│   │   ├── ExtraSkillsList.tsx   # Heading + skill items list
+│   │   ├── SidebarSkills.tsx     # Grouped skills and descriptive language levels
 │   │   ├── SocialLinksGroup.tsx  # Group of SocialIconLink items
 │   │   ├── FlipCard.tsx          # 3D flip card (front: icon+title, back: details)
 │   │   └── EducationEntry.tsx    # Education/experience entry card
@@ -82,7 +78,7 @@ src/
 │   │   ├── MobileHeader.tsx      # Mobile hamburger menu with full sidebar content
 │   │   ├── HeroSection.tsx       # Animated gradient hero with profile photo
 │   │   ├── KnowledgeSection.tsx  # Flip cards grid showing technical knowledge
-│   │   ├── EducationSection.tsx  # Education & experience timeline
+│   │   ├── EducationSection.tsx  # Professional achievements and education
 │   │   ├── PortfolioSection.tsx  # Expandable project showcase with lightbox
 │   │   └── Footer.tsx            # Copyright footer
 │   ├── ScrollReveal.tsx          # Intersection Observer fade-in wrapper
@@ -116,8 +112,8 @@ src/
 
 ```bash
 # Clone the repository
-git clone https://github.com/AndresGUIO2/hector-andres-guiza-portafolio.git
-cd hector-andres-guiza-portafolio
+git clone https://github.com/AndresGUIO2/hector-andres-guiza-portfolio.git
+cd hector-andres-guiza-portfolio
 
 # Install dependencies
 pnpm install
@@ -157,7 +153,7 @@ The project is deployed on **Vercel** with automated deployments via **GitHub Ac
 ## Author
 
 **Héctor Andrés Güiza Ortegón**
-- Systems Engineering student — Universidad de Antioquia (10th semester)
-- Full Stack Developer & Data Engineer
+- Systems Engineering — Universidad de Antioquia (expected 2026)
+- Fullstack Engineer
 - GitHub: [@AndresGUIO2](https://github.com/AndresGUIO2)
 - LinkedIn: [Héctor Güiza](https://www.linkedin.com/in/h%C3%A9ctor-andr%C3%A9s-g%C3%BCiza-ortegon-87795336a/)

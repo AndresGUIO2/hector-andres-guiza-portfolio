@@ -13,30 +13,43 @@ interface EducationEntryData {
   period: string;
   /** Detailed description of the experience or achievement */
   description: string;
+  achievements?: string[];
 }
 
-/** Static data array listing the developer's academic and professional background */
+/** Public summaries; company code and internal assets stay private. */
 const educationEntries: EducationEntryData[] = [
   {
-    institution: "Universidad de Antioquia",
-    role: "Student",
-    period: "2021 - Present",
+    institution: "PiTransform",
+    role: "Full Stack Developer",
+    period: "2025 - Present",
     description:
-      "Systems Engineering (10th semester). Specialized in software architecture, data engineering, and full stack development. Key projects include real-time AI rendering engines, electronic invoicing systems, and strategic procurement platforms.",
+      "Remote work for a US company, building web applications and AI-powered experiences.",
+    achievements: [
+      "Built an AI agent platform with a Python/FastAPI backend and a Next.js/TypeScript frontend.",
+      "Contributed to application architecture improvements, achieving serverless cold starts under 2 seconds.",
+      "Decoupled heavy background processing through an event-driven architecture and validated application stability with high-concurrency Gatling load tests.",
+      "Implemented talking avatars with viseme-driven lip synchronization, without paid avatar animation services.",
+      "Automated infrastructure provisioning with Azure Bicep for consistent, repeatable environments.",
+    ],
   },
   {
     institution: "Innovati Software",
-    role: "Full Stack Developer, Data Engineer",
-    period: "2024",
-    description:
-      "Designed reference architecture using C4 Model for deployment on Microsoft Fabric and Power Platform. Built and optimized data pipelines for ingestion and transformation. Implemented FAISS algorithms for similarity searches. Backend development in NestJS.",
-  },
-  {
-    institution: "Key Technical Projects",
-    role: "Lead Developer",
+    role: "Full Stack Developer & Data Engineer",
     period: "2024 - 2025",
     description:
-      "Built a strategic procurement intelligence platform using Microsoft Fabric with Medallion Architecture. Developed an AML screening ecosystem with WorldCheck API. Architected a real-time AI 'Talking Heads' rendering engine using Python and GLSL shaders.",
+      "Software architecture, data engineering, and process automation in Medellín, Colombia.",
+    achievements: [
+      "Designed reference architecture with the C4 Model for Microsoft Fabric and Power Platform solutions, aligning decisions with architecture board and stakeholder requirements.",
+      "Processed millions of public purchase and sales records and internal transactions for budgeting and operational analysis.",
+      "Reduced budget preparation time by 75% through data processing and automation.",
+    ],
+  },
+  {
+    institution: "Universidad de Antioquia",
+    role: "Systems Engineering",
+    period: "Expected 2026",
+    description:
+      "Focus areas include software architecture, data engineering, full stack development, AI systems, and process automation.",
   },
 ];
 
@@ -47,24 +60,25 @@ const educationEntries: EducationEntryData[] = [
  */
 export default function EducationSection() {
   return (
-    <div className="flex flex-col items-center gap-[33px]">
+    <section id="experience" className="flex flex-col items-center gap-8">
       <SectionHeading
-        title="Education"
-        description="Academic background and professional experience in software engineering, data architecture, and full stack development."
+        title="Experience & Education"
+        description="Professional experience building web applications, improving architecture, and turning data into useful tools."
       />
-      <div className="bg-white rounded-lg w-full mt-10 p-6 md:p-10">
+      <div className="bg-white rounded-lg w-full p-6 md:p-10">
         {educationEntries.map((entry, index) => (
           <EducationEntry
-            key={index}
+            key={entry.institution}
             institution={entry.institution}
             role={entry.role}
             period={entry.period}
             description={entry.description}
+            achievements={entry.achievements}
             // Show a visual divider between entries, but not after the last one
             showDivider={index < educationEntries.length - 1}
           />
         ))}
       </div>
-    </div>
+    </section>
   );
 }

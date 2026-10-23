@@ -1,9 +1,10 @@
 "use client";
 
-import { FaCode, FaDatabase, FaDraftingCompass, FaBrain, FaCloud, FaRobot } from "react-icons/fa";
+import { FaCode, FaDatabase, FaDraftingCompass, FaBrain, FaCloud, FaVial } from "react-icons/fa";
 import { IconType } from "react-icons";
 import SectionHeading from "@/components/atoms/SectionHeading";
 import FlipCard from "@/components/molecules/FlipCard";
+import WorkflowPresentation from "@/components/molecules/WorkflowPresentation";
 
 /**
  * Shape for each knowledge area displayed as a flip card.
@@ -25,45 +26,45 @@ interface KnowledgeItem {
 const knowledgeItems: KnowledgeItem[] = [
   {
     title: "Full Stack Development",
-    description: "Web apps, APIs, Next.js",
+    description: "TypeScript, Next.js, FastAPI",
     icon: FaCode,
-    highlight: "Built a POS & Electronic Invoicing System using Next.js frontend with FastAPI async backend, integrating third-party APIs for automated legal invoice dispatch.",
-    tags: ["Next.js", "FastAPI", "PostgreSQL", "NestJS", "TypeScript", "Tailwind"],
+    highlight: "Built AI-powered web applications at PiTransform, connecting Next.js and TypeScript interfaces to Python/FastAPI backends and REST APIs.",
+    tags: ["Next.js", "TypeScript", "Python", "FastAPI", "REST APIs"],
   },
   {
     title: "Data Engineering",
-    description: "Pipelines, Data Lakes, ETL",
+    description: "SQL, pipelines, Microsoft Fabric",
     icon: FaDatabase,
-    highlight: "Architected a Strategic Procurement Intelligence Platform using Microsoft Fabric with Medallion Architecture (Bronze→Silver→Gold), automating pipelines from government open data.",
-    tags: ["Spark", "Fabric", "PySpark", "Pandas", "FAISS", "KNN"],
+    highlight: "Processed millions of transaction records at Innovati Software for budgeting and operational analysis, helping reduce budget preparation time by 75%.",
+    tags: ["SQL", "Microsoft Fabric", "PostgreSQL", "Data pipelines"],
   },
   {
     title: "Software Architecture",
-    description: "C4 Model, Architecture as Code",
+    description: "Serverless, events, C4 Model",
     icon: FaDraftingCompass,
-    highlight: "Defined corporate Reference Architecture for a 1000+ employee company using C4 Model and Architecture as Code, achieving formal approval from the IT Architecture Board.",
-    tags: ["C4 Model", "LikeC4", "AaC", "Microservices", "Governance"],
+    highlight: "Contributed to serverless architecture improvements with cold starts under 2 seconds. Decoupled heavy background processing using an event-driven architecture.",
+    tags: ["Serverless", "Event-driven architecture", "Microservices", "C4 Model"],
   },
   {
-    title: "AI & Computer Vision",
-    description: "ML, Rendering, GLSL Shaders",
+    title: "AI & Interactive Avatars",
+    description: "AI agents, visemes, lip sync",
     icon: FaBrain,
-    highlight: "Co-developed a real-time AI 'Talking Heads' rendering engine using Python and custom GLSL shaders, with parallax-based 2.5D depth synthesis and lip-sync models.",
-    tags: ["Python", "GLSL", "OpenCV", "PyTorch", "Gemini API", "FAISS"],
+    highlight: "Implemented talking avatars with viseme-driven lip synchronization, without paid avatar animation services. Built AI agent applications with Python and FastAPI.",
+    tags: ["AI agents", "Visemes", "Lip sync", "Python", "FastAPI"],
   },
   {
     title: "Cloud & DevOps",
-    description: "Azure, Microsoft Fabric, Spark",
+    description: "Azure, Bicep, infrastructure as code",
     icon: FaCloud,
-    highlight: "Deployed enterprise solutions on Microsoft Fabric (OneLake) and Power Platform, building automated data pipelines for advanced analytics at scale.",
-    tags: ["Azure", "Fabric", "Power Platform", "CI/CD", "Docker"],
+    highlight: "Automated Azure infrastructure provisioning with Bicep to keep environments consistent and deployments repeatable, alongside experience with Docker and CI/CD.",
+    tags: ["Azure", "Azure Bicep", "Docker", "CI/CD"],
   },
   {
-    title: "Automation",
-    description: "Power Platform, Scripts, Bots",
-    icon: FaRobot,
-    highlight: "Built a high-compliance AML screening ecosystem with WorldCheck API, batch processing 50+ concurrent cases with automated risk scoring and traffic-light logic.",
-    tags: ["Power Platform", "WorldCheck API", "Python", "SQL", "RPA"],
+    title: "Performance Testing",
+    description: "Gatling, load testing, concurrency",
+    icon: FaVial,
+    highlight: "Designed and ran high-concurrency Gatling load tests to validate application stability under traffic spikes and support performance-focused engineering decisions.",
+    tags: ["Gatling", "Load testing", "Concurrency", "Performance"],
   },
 ];
 
@@ -76,10 +77,11 @@ export default function KnowledgeSection() {
   return (
     <div className="flex flex-col items-center gap-[33px]">
       <SectionHeading
-        title="My Knowledge"
-        description="Full Stack Developer with expertise spanning data engineering, software architecture, AI, and cloud solutions."
+        title="Technical Expertise"
+        description="Full stack engineering backed by experience in APIs, data pipelines, serverless architecture, and performance testing."
       />
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-10 w-full">
+      <WorkflowPresentation />
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 w-full">
         {knowledgeItems.map((item) => (
           <FlipCard
             key={item.title}

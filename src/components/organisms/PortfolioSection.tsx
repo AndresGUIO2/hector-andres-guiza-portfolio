@@ -2,9 +2,12 @@
 
 import { useState } from "react";
 import { createPortal } from "react-dom";
-import { FaArrowRight, FaChevronUp, FaTimes } from "react-icons/fa";
+import { FaChevronUp, FaTimes } from "react-icons/fa";
 import SectionHeading from "@/components/atoms/SectionHeading";
 import TagBadge from "@/components/atoms/TagBadge";
+import SyntelleProject from "@/components/molecules/SyntelleProject";
+import ProjectCard from "@/components/molecules/ProjectCard";
+import { syntelleProject } from "@/data/projects";
 
 /** Paths to the HistorIA project screenshot images for the gallery */
 const screenshots = [
@@ -45,48 +48,43 @@ const pillars = [
  * screenshot gallery, technical pillars, features, and a lightbox zoom.
  */
 export default function PortfolioSection() {
-  /** Whether the project detail card is expanded or collapsed */
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState<"syntelle" | "historia" | null>(null);
   /** URL of the currently zoomed screenshot, or null when lightbox is closed */
   const [zoomed, setZoomed] = useState<string | null>(null);
+
+  function collapseProject(projectId: "syntelle" | "historia") {
+    setExpanded(null);
+    requestAnimationFrame(() => document.getElementById(`${projectId}-learn-more`)?.focus());
+  }
 
   return (
     <div className="flex flex-col items-center gap-[33px]">
       <SectionHeading
-        title="Portfolio"
-        description="Featured projects showcasing expertise in game development, AI integration, and Android architecture."
+        title="Selected Projects"
+        description="From conversational AI characters to interactive storytelling: projects I build across web and mobile."
       />
 
-      {!expanded ? (
-        /* Collapsed card */
-        <div className="flex items-center justify-center w-full">
-          <div className="bg-white rounded-lg overflow-hidden w-full sm:w-[310px] flex-shrink-0">
-            <img
-              src="/images/historia/cover.png"
-              alt="HistorIA — Starship Centaurus"
-              className="w-full h-[200px] sm:h-[300px] object-cover"
-            />
-            <div className="p-6">
-              <h3 className="text-dark text-[18px] font-medium">
-                HistorIA — Starship Centaurus
-              </h3>
-              <p className="text-secondary text-[14px] leading-5 mt-2">
-                Sci-fi narrative investigation game for Android. Identify a traitor among the crew before the starship fails. Hybrid FSM + LLM engine with deterministic simulation and dynamic Gemini-powered storytelling.
-              </p>
-              <div className="flex flex-wrap gap-1 mt-3">
-                {["Kotlin", "Jetpack Compose", "Gemini AI", "Room DB"].map((t) => (
-                  <TagBadge key={t} text={t} size="sm" variant="accent" />
-                ))}
-              </div>
-              <button
-                onClick={() => setExpanded(true)}
-                className="inline-flex items-center gap-2 text-accent text-[18px] font-medium capitalize mt-4 hover:underline cursor-pointer"
-              >
-                Learn more
-                <FaArrowRight className="text-[14px]" />
-              </button>
-            </div>
-          </div>
+      {expanded === "syntelle" ? (
+        <SyntelleProject onCollapse={() => collapseProject("syntelle")} />
+      ) : !expanded ? (
+        <div className="grid w-full max-w-[640px] grid-cols-1 gap-5 sm:grid-cols-2">
+          <ProjectCard
+            id="syntelle"
+            title={syntelleProject.name}
+            image={syntelleProject.cover}
+            imagePosition="center 20%"
+            description={syntelleProject.description}
+            technologies={["Vue.js", "Go", "FastAPI", "WebRTC"]}
+            onExpand={() => setExpanded("syntelle")}
+          />
+          <ProjectCard
+            id="historia"
+            title="HistorIA — Starship Centaurus"
+            image="/images/historia/cover.png"
+            description="Sci-fi narrative investigation game for Android. Identify a traitor among the crew before the starship fails. Hybrid FSM + LLM engine with deterministic simulation and dynamic Gemini-powered storytelling."
+            technologies={["Kotlin", "Jetpack Compose", "Gemini AI", "Room DB"]}
+            onExpand={() => setExpanded("historia")}
+          />
         </div>
       ) : (
         /* Expanded view */
@@ -153,7 +151,7 @@ export default function PortfolioSection() {
             </div>
 
             <button
-              onClick={() => setExpanded(false)}
+              onClick={() => collapseProject("historia")}
               className="inline-flex items-center gap-2 text-accent text-[18px] font-medium capitalize mt-8 hover:underline cursor-pointer"
             >
               Show less
